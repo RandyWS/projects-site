@@ -12,7 +12,7 @@ import NotFound from "./components/NotFound";
 import Landing from "./components/Landing";
 import ProjectsHome from "./components/ProjectsHome";
 import InProgressHome from "./components/InProgressHome";
-import AlgosHome from "./components/AlgosHome";
+import AlgosNav from "./components/AlgosNav";
 import BlogHome from "./components/BlogHome";
 import { me } from "./store";
 
@@ -37,7 +37,7 @@ const Routes = () => {
         <Route exact path="/" component={Landing} />
         <Route exact path="/projects" component={ProjectsHome} />
         <Route exact path="/ongoing" component={InProgressHome} />
-        <Route exact path="/algos" component={AlgosHome} />
+        <Route exact path="/algos" component={AlgosNav} />
         <Route exact path="/blog" component={BlogHome} />
         <GuestRoute
           isLoggedIn={loggedIn}
