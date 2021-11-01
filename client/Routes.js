@@ -1,59 +1,64 @@
-import React, {Component, Fragment} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-import { Login, Signup } from './components/AuthForm';
-import Home from './components/Home';
-import {me} from './store'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import {
+  LoggedInRoute,
+  AdminRoute,
+  GuestRoute,
+} from "./components/ProtectedRoutes";
+import { Login, Signup } from "./components/AuthForm";
+import Home from "./components/Home";
+import NotFound from "./components/NotFound";
+import Landing from "./components/Landing";
+import { me } from "./store";
 
 /**
  * COMPONENT
  */
-class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
+const Routes = () => {
+  const dispatch = useDispatch();
+  const { loggedIn } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(me());
+  }, []);
+
+  if (loggedIn === undefined) {
+    return null;
   }
 
-  render() {
-    const {isLoggedIn} = this.props
-
-    return (
-      <div>
-        {isLoggedIn ? (
-          <Switch>
-            <Route path="/home" component={Home} />
-            <Redirect to="/home" />
-          </Switch>
-        ) : (
-          <Switch>
-            <Route path='/' exact component={ Login } />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-          </Switch>
-        )}
-      </div>
-    )
-  }
-}
+  return (
+    <div>
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <GuestRoute
+          isLoggedIn={loggedIn}
+          exact
+          path="/home"
+          component={Landing}
+        />
+        <GuestRoute
+          isLoggedIn={loggedIn}
+          exact
+          path="/login"
+          component={Login}
+        />
+        <GuestRoute
+          isLoggedIn={loggedIn}
+          exact
+          path="/signup"
+          component={Signup}
+        />
+        <Route path="*" component={NotFound}></Route>
+      </Switch>
+    </div>
+  );
+};
 
 /**
  * CONTAINER
  */
-const mapState = state => {
-  return {
-    // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
-    // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
-    isLoggedIn: !!state.auth.id
-  }
-}
-
-const mapDispatch = dispatch => {
-  return {
-    loadInitialData() {
-      dispatch(me())
-    }
-  }
-}
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Routes))
+export default withRouter(Routes);

@@ -19,3 +19,119 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#landing {
+  display: flex;
+}
+
+#column {
+  display: flex;
+  flex-direction: column;
+}
+
+#bio {
+  display: flex;
+  flex-direction: column;
+}
+#bio-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100vw;
+}
+
+.bio-text {
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.paragraph {
+  padding: 10px;
+  font-size: medium;
+  font-family: Helvetica;
+}
+
+.bio-img {
+  align-content: flex-end;
+}
+.randy-img {
+  padding: 10px;
+  border-radius: 20%;
+  height: 60vh;
+}
+.icons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 10px;
+}
+#homepage {
+  width: 80%;
+  height: 50%;
+  margin: auto;
+  position: absolute;
+  top: 350px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#homepage-head {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffb248;
+  border: 3px #ffb248;
+  padding: 1em 1.6em;
+  font-weight: 100;
+  border-radius: 5px;
+  line-height: 2em;
+}
+
+#homepage-text {
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 5px black;
+  margin-bottom: 3px;
+  font-weight: 700;
+  color: #ffb248;
+}
+
+.homepage-container {
+  text-align: center;
+  background-color: #000000;
+  min-width: 100vh;
+  min-height: 75vh;
+  background-size: cover;
+  position: relative;
+  /* The image used */
+  background-image: url("https://www.wallpapers13.com/wp-content/uploads/2016/04/Cheetahs-cubs-and-big-cats-predators-HD-Wallpaper-3840x2400-1920x1080.jpg");
+}
+.homepage-button {
+  color: white;
+  padding: 0.5em 2em;
+  border-radius: 5px;
+  background: rgba(223, 145, 18, 1) 25%;
+  border-radius: 5px;
+  font-size: 120%;
+  padding-top: 50;
+}
+
+#rounded-images-categories {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.rounded-images-categories {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 5px;
+  border-radius: 20%;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  padding: 20px; /* Add some padding */
+}
