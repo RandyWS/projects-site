@@ -24,7 +24,7 @@ export const Home = (props) => {
     <div id="landing">
       <div id="column">
         <div id="bio">
-          <h1>Meet the creator:</h1>
+          <h1>Meet Randy:</h1>
           <div id="bio-info">
             <div className="bio-text">
               <div className="paragraph">

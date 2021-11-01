@@ -10,6 +10,10 @@ import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Landing from "./components/Landing";
+import ProjectsHome from "./components/ProjectsHome";
+import InProgressHome from "./components/InProgressHome";
+import AlgosHome from "./components/AlgosHome";
+import BlogHome from "./components/BlogHome";
 import { me } from "./store";
 
 /**
@@ -31,12 +35,10 @@ const Routes = () => {
     <div>
       <Switch>
         <Route exact path="/" component={Landing} />
-        <GuestRoute
-          isLoggedIn={loggedIn}
-          exact
-          path="/home"
-          component={Landing}
-        />
+        <Route exact path="/projects" component={ProjectsHome} />
+        <Route exact path="/ongoing" component={InProgressHome} />
+        <Route exact path="/algos" component={AlgosHome} />
+        <Route exact path="/blog" component={BlogHome} />
         <GuestRoute
           isLoggedIn={loggedIn}
           exact
