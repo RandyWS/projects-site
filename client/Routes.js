@@ -14,6 +14,11 @@ import ProjectsHome from "./components/ProjectsHome";
 import InProgressHome from "./components/InProgressHome";
 import AlgosNav from "./components/AlgosNav";
 import BlogHome from "./components/BlogHome";
+import BlogPost from "./components/BlogPost";
+import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
+import AddBlogPost from "./components/loggedIn/AddBlogPost";
+
 import { me } from "./store";
 
 /**
@@ -39,18 +44,20 @@ const Routes = () => {
         <Route exact path="/ongoing" component={InProgressHome} />
         <Route exact path="/algos" component={AlgosNav} />
         <Route exact path="/blog" component={BlogHome} />
+        <LoggedInRoute
+          isLoggedIn={loggedIn}
+          exact
+          path="/blog/add"
+          component={AddBlogPost}
+        />
+        <Route exact path="/blog/:postId" component={BlogPost} />
         <GuestRoute
           isLoggedIn={loggedIn}
           exact
           path="/login"
           component={Login}
         />
-        <GuestRoute
-          isLoggedIn={loggedIn}
-          exact
-          path="/signup"
-          component={Signup}
-        />
+
         <Route path="*" component={NotFound}></Route>
       </Switch>
     </div>
