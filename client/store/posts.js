@@ -6,6 +6,8 @@ const TOKEN = "token";
 
 const SET_CURR_POST = "SET_CURR_POST";
 const SET_ALL_POSTS = "SET_ALL_POSTS";
+const DELETE_POST = "DELETE_POST";
+const EDIT_POST = "EDIT_POST";
 
 export const setCurrPost = (post) => {
   return {
@@ -18,6 +20,20 @@ export const setAllPosts = (posts) => {
   return {
     type: SET_ALL_POSTS,
     posts,
+  };
+};
+
+export const deletePost = (postId) => {
+  return {
+    type: DELETE_POST,
+    postId,
+  };
+};
+
+export const editPost = (post) => {
+  return {
+    type: EDIT_POST,
+    post,
   };
 };
 
@@ -55,7 +71,6 @@ export const _fetchPosts = () => {
           },
         });
 
-        console.log("posts retrieved from fetch curr post", data);
         if (data.length) {
           dispatch(setAllPosts(data));
         }
@@ -70,7 +85,6 @@ export const _createPost = (post) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
-      console.log("post to be created", post);
 
       if (token) {
         const { data } = await axios.post(`/api/posts`, post, {
@@ -79,10 +93,54 @@ export const _createPost = (post) => {
           },
         });
 
-        console.log("posts retrieved from create post", data);
-        // if (data.post.id) {
-        //   dispatch(setCurrPost(data.post));
-        // }
+        if (data.post.id) {
+          dispatch(setCurrPost(data.post));
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const _deletePost = (postId) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN);
+
+      if (token) {
+        const { data } = await axios.delete(`/api/posts/${postId}`, {
+          headers: {
+            authorization: token,
+          },
+        });
+
+        if (data) {
+          dispatch(deletePost(postId));
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const _editPost = (post) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN);
+
+      if (token) {
+        const { data } = await axios.put(`/api/posts/${post.id}`, post, {
+          headers: {
+            authorization: token,
+          },
+        });
+
+        console.log("posts edited", data);
+        if (data.length) {
+          dispatch(editPost(data[1][0]));
+        }
       }
     } catch (error) {
       console.log(error);
@@ -101,6 +159,26 @@ export default function (state = initialState, action) {
       return { ...state, currPost: action.post };
     case SET_ALL_POSTS:
       return { ...state, allPosts: action.posts };
+    case DELETE_POST:
+      let deletedStateCopy = [...state.allPosts];
+      if (deletedStateCopy.length) {
+        deletedStateCopy = deletedStateCopy.filter(
+          (post) => post.id !== action.postId
+        );
+      }
+      return { ...state, allPosts: deletedStateCopy };
+    case EDIT_POST:
+      let stateCopy = [...state.allPosts];
+      if (stateCopy.length) {
+        stateCopy = stateCopy.map((post) => {
+          if (post.id === action.post.id) {
+            post = action.post;
+          }
+          return post;
+        });
+      }
+
+      return { ...state, allPosts: stateCopy };
     default:
       return state;
   }

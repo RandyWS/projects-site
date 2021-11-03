@@ -140,9 +140,9 @@ const BlogHome = (props) => {
     setPosts([...allPosts.slice(1)]);
   }, [allPosts]);
 
-  console.log("all posts", allPosts);
-  console.log("posts", posts);
-  console.log("feat post", featPost);
+  if (!featPost.id) {
+    return null;
+  }
 
   return (
     <>

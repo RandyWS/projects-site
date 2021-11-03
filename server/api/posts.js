@@ -63,3 +63,32 @@ router.post("/", authRequired, async (req, res, next) => {
     next(err);
   }
 });
+
+// DELETE /api/posts/:id
+router.delete("/:id", authRequired, async (req, res, next) => {
+  try {
+    if (req.userId) {
+      const deleteCount = await Post.destroy({
+        where: { id: req.params.id },
+      });
+      res.status(200).json(deleteCount);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put("/:id", authRequired, async (req, res, next) => {
+  try {
+    if (req.userId) {
+      const updatedPost = await Post.update(req.body, {
+        where: { id: req.params.id },
+        returning: true,
+      });
+
+      res.status(200).json(updatedPost);
+    }
+  } catch (err) {
+    next(err);
+  }
+});

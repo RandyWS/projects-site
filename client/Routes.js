@@ -50,6 +50,12 @@ const Routes = () => {
           path="/blog/add"
           component={AddBlogPost}
         />
+        <LoggedInRoute
+          isLoggedIn={loggedIn}
+          exact
+          path="/blog/edit/:postId"
+          component={AddBlogPost}
+        />
         <Route exact path="/blog/:postId" component={BlogPost} />
         <GuestRoute
           isLoggedIn={loggedIn}

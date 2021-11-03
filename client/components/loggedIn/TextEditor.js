@@ -9,11 +9,12 @@ const getHtml = (editorState) =>
 
 const TextEditor = (props) => {
   const [editorState, setEditorState] = useState(() => {
-    const content = window.localStorage.getItem("content");
+    let content = window.localStorage.getItem("content");
+
     if (content) {
       return EditorState.createWithContent(convertFromRaw(JSON.parse(content)));
     } else {
-      EditorState.createEmpty();
+      return EditorState.createEmpty();
     }
   });
 

@@ -17,7 +17,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
 
 import { useDispatch, useSelector } from "react-redux";
-import { _fetchCurrPost } from "../store";
+import { _fetchCurrPost, _deletePost, me } from "../store";
 
 const useStyles = makeStyles((theme) => ({
   blogsContainer: {
@@ -98,22 +98,34 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     padding: 10,
   },
+  authLink: {
+    fontSize: "20px",
+    padding: 10,
+  },
 }));
 
 const BlogPost = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { currPost } = useSelector((state) => state.posts);
+  const { loggedIn } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(_fetchCurrPost(props.match.params.postId));
+  }, []);
+
+  useEffect(() => {
+    dispatch(me());
   }, []);
 
   if (!currPost.id) {
     return null;
   }
 
-  console.log("currPost", currPost);
+  const handleDelete = () => {
+    dispatch(_deletePost(currPost.id));
+    props.history.push("/blog");
+  };
 
   return (
     <>
@@ -122,6 +134,22 @@ const BlogPost = (props) => {
         <Container maxWidth="lg" direction="column">
           <Card className={classes.featCard}>
             <CardContent>
+              {loggedIn ? (
+                <>
+                  <Link
+                    className={classes.authLink}
+                    to={`/blog/edit/${currPost.id}`}
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    className={classes.authLink}
+                    onClick={() => handleDelete()}
+                  >
+                    Delete
+                  </button>
+                </>
+              ) : null}
               <Typography
                 gutterBottom
                 variant="h2"
