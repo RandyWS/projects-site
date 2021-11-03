@@ -21,7 +21,7 @@ export const setAllPosts = (posts) => {
   };
 };
 
-export const _fetchCurrPost = () => {
+export const _fetchCurrPost = (id) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
@@ -33,10 +33,9 @@ export const _fetchCurrPost = () => {
           },
         });
 
-        console.log("posts retrieved from fetch posts", data);
-        // if (data.post.id) {
-        //   dispatch(setCurrPost(data.post));
-        // }
+        if (data.id) {
+          dispatch(setCurrPost(data));
+        }
       }
     } catch (error) {
       console.log(error);

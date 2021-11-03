@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
 import PreviewModal from "./PreviewModal";
@@ -8,12 +8,21 @@ const getHtml = (editorState) =>
   draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
 const TextEditor = (props) => {
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
+  const [editorState, setEditorState] = useState(() => {
+    const content = window.localStorage.getItem("content");
+    if (content) {
+      return EditorState.createWithContent(convertFromRaw(JSON.parse(content)));
+    } else {
+      EditorState.createEmpty();
+    }
+  });
 
   useEffect(() => {
     props.setContent(
+      JSON.stringify(convertToRaw(editorState.getCurrentContent()))
+    );
+    window.localStorage.setItem(
+      "content",
       JSON.stringify(convertToRaw(editorState.getCurrentContent()))
     );
   }, [editorState, props.setContent]);
