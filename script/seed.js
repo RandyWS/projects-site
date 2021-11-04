@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User },
+  models: { User, Category, AlgoType },
 } = require("../server/db");
 
 /**
@@ -18,6 +18,20 @@ async function seed() {
     User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123" }),
     User.create({ username: "randy", password: "123" }),
+  ]);
+
+  const algoTypes = await Promise.all([
+    AlgoType.create({
+      name: "Data Structures",
+      url: "data-structures",
+    }),
+  ]);
+
+  const categories = await Promise.all([
+    Category.create({
+      name: "Arrays and Strings",
+      algoTypeId: algoTypes[0].id,
+    }),
   ]);
 
   console.log(`seeded ${users.length} users`);

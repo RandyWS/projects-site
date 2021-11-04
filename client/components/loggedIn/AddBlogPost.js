@@ -8,7 +8,6 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Typography from "@mui/material/Typography";
-import { convertFromRaw } from "draft-js";
 
 import { useDispatch, useSelector } from "react-redux";
 import { _createPost, _fetchCurrPost, _editPost } from "../../store";
@@ -26,7 +25,7 @@ const AddBlogPost = (props) => {
       dispatch(_fetchCurrPost(props.match.params.postId));
     }
   }, []);
-  console.log(currPost.content);
+
   useEffect(() => {
     if (currPost.id) {
       setTitle(currPost.title);
@@ -46,7 +45,7 @@ const AddBlogPost = (props) => {
       date: Date.now(),
     };
 
-    const content = window.localStorage.removeItem("content");
+    window.localStorage.removeItem("content");
     dispatch(_createPost(post));
     props.history.push("/blog");
   };
@@ -59,8 +58,8 @@ const AddBlogPost = (props) => {
       imageUrl: image,
       content,
     };
-    console.log("post to edit", post);
-    const content = window.localStorage.removeItem("content");
+
+    window.localStorage.removeItem("content");
     dispatch(_editPost(post));
     props.history.push("/blog");
   };

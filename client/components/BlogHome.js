@@ -17,7 +17,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
 
 import { useDispatch, useSelector } from "react-redux";
-import { _fetchPosts } from "../store";
+import { _fetchPosts, me } from "../store";
 
 const useStyles = makeStyles((theme) => ({
   blogsContainer: {
@@ -130,6 +130,11 @@ const BlogHome = (props) => {
   const { allPosts } = useSelector((state) => state.posts);
   const [featPost, setFeatPost] = useState({});
   const [posts, setPosts] = useState([]);
+  const { loggedIn } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(me());
+  }, []);
 
   useEffect(() => {
     dispatch(_fetchPosts());
@@ -149,6 +154,8 @@ const BlogHome = (props) => {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
         <Container maxWidth="lg" direction="column">
+          {loggedIn ? <Link to={`/blog/add`}>Add</Link> : null}
+
           <Card className={classes.featCard}>
             <CardActionArea component={Link} to={`/blog/${featPost.id}`}>
               <CardMedia

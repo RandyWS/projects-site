@@ -1,11 +1,22 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 
+import { me } from "../store";
+
 const AlgosHome = (props) => {
+  const dispatch = useDispatch();
+  const { loggedIn } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(me());
+  }, []);
+
   useEffect(() => {
     const script = document.createElement("script");
 
@@ -23,6 +34,7 @@ const AlgosHome = (props) => {
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <Toolbar />
+      {loggedIn ? <Link to={`/algos/add`}>Add</Link> : null}
       <div id="row">
         <Typography variant="h3" component="div" gutterBottom>
           Algos

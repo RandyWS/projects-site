@@ -17,6 +17,7 @@ const TextEditor = (props) => {
       return EditorState.createEmpty();
     }
   });
+  const [contentProp, setContentProp] = useState("");
 
   useEffect(() => {
     props.setContent(

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Link } from "react-router-dom";
 
 import Box from "@mui/material/Box";
@@ -15,30 +15,49 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 
+import { useDispatch, useSelector } from "react-redux";
+import { _fetchAlgos, _fetchAlgoTypes } from "../store";
+
 const drawerWidth = 240;
 
-const dataStructuresItems = [
-  {
-    id: 1,
-    title: "Arrays and Strings",
-    subtitles: [{ "hash-tables": "Hash Tables" }],
-  },
-];
-// const dataStructuresItems = [
-//   {
-//     id: 1,
-//     title: "Arrays and Strings",
-//     subtitles: ["Hash Tables"],
-//   },
-//   {
-//     id: 2,
-//     title: "Linked Lists",
-//     subtitles: ["Creating a Linked List", "Step Form", "Advanced Form"],
-//   },
-// ];
-
 const AlgosDrawer = (props) => {
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState({});
+  const [drawer, setDrawer] = useState([]);
+  const { allAlgos, algoTypes } = useSelector((state) => state.algos);
+
+  useEffect(() => {
+    dispatch(_fetchAlgos());
+  }, []);
+
+  useEffect(() => {
+    dispatch(_fetchAlgoTypes());
+  }, []);
+
+  useEffect(() => {
+    if (allAlgos.length && algoTypes.length) {
+      let newDrawer = algoTypes.map((type) => {
+        let currType = {
+          id: type.id,
+          name: type.name,
+          url: type.url,
+          categories: [],
+        };
+        currType.categories = type.categories.map((cat) => {
+          let currCat = { ...cat, subtitles: [] };
+          currCat.subtitles = allAlgos.filter((algo) => {
+            if (algo.categoryId === currCat.id) {
+              return algo;
+            }
+          });
+          return currCat;
+        });
+        return currType;
+      });
+
+      setDrawer(newDrawer);
+    }
+  }, [allAlgos, algoTypes]);
 
   function handleClick(id) {
     setOpen((prevState) => ({ ...prevState, [id]: !prevState[id] }));
@@ -64,30 +83,37 @@ const AlgosDrawer = (props) => {
           </ListItemButton>
         </List>
         <Divider />
-        <ListSubheader component="div">Data Structures</ListSubheader>
-        {dataStructuresItems.map((postData) => {
+        {drawer.map((postData) => {
           return (
             <div key={postData.id}>
-              <ListItemButton onClick={() => handleClick(postData.id)}>
-                <ListItemText>{postData.title}</ListItemText>
-                {open[postData.id] ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-              <Collapse in={open[postData.id]}>
-                {postData.subtitles.map((subtitle, index) => {
-                  return (
-                    <List
-                      key={index}
-                      component={Link}
-                      to={`/algos/data-structures/${Object.keys(subtitle)}`}
-                      disablePadding
-                    >
-                      <ListItemButton sx={{ pl: 4 }}>
-                        <ListItemText>{Object.values(subtitle)}</ListItemText>
-                      </ListItemButton>
-                    </List>
-                  );
-                })}
-              </Collapse>
+              <ListSubheader component="div">{postData.name}</ListSubheader>
+
+              {postData.categories.map((cat) => {
+                return (
+                  <div key={cat.id}>
+                    <ListItemButton onClick={() => handleClick(cat.id)}>
+                      <ListItemText>{cat.name}</ListItemText>
+                      {open[cat.id] ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse in={open[cat.id]}>
+                      {cat.subtitles.map((subtitle) => {
+                        return (
+                          <List
+                            key={subtitle.id}
+                            component={Link}
+                            to={`/algos/${postData.url}/${subtitle.id}`}
+                            disablePadding
+                          >
+                            <ListItemButton sx={{ pl: 4 }}>
+                              <ListItemText>{subtitle.title}</ListItemText>
+                            </ListItemButton>
+                          </List>
+                        );
+                      })}
+                    </Collapse>
+                  </div>
+                );
+              })}
             </div>
           );
         })}
@@ -98,107 +124,3 @@ const AlgosDrawer = (props) => {
 };
 
 export default AlgosDrawer;
-
-// import React, { useState } from "react";
-// import { Route, Link } from "react-router-dom";
-
-// import Box from "@mui/material/Box";
-// import Drawer from "@mui/material/Drawer";
-// import CssBaseline from "@mui/material/CssBaseline";
-// import Toolbar from "@mui/material/Toolbar";
-// import List from "@mui/material/List";
-// import Typography from "@mui/material/Typography";
-// import Divider from "@mui/material/Divider";
-// import ListItem from "@mui/material/ListItem";
-// import ListItemText from "@mui/material/ListItemText";
-// import ListItemButton from "@mui/material/ListItemButton";
-// import ListSubheader from "@mui/material/ListSubheader";
-// import Collapse from "@mui/material/Collapse";
-// import ExpandLess from "@mui/icons-material/ExpandLess";
-// import ExpandMore from "@mui/icons-material/ExpandMore";
-
-// import AlgosHome from "./AlgosHome";
-// import ArraysAndStrings from "./algos/data-structures/ArraysAndStrings";
-
-// const drawerWidth = 240;
-
-// const dataStructuresItems = [
-//   {
-//     id: 1,
-//     title: "Arrays and Strings",
-//     subtitles: ["Hash Tables", "ArrayList & Resizeable Arrays"],
-//   },
-//   {
-//     id: 2,
-//     title: "Linked Lists",
-//     subtitles: ["Creating a Linked List", "Step Form", "Advanced Form"],
-//   },
-// ];
-
-// const AlgosDrawer = (props) => {
-//   const [open, setOpen] = React.useState({});
-
-//   function handleClick(id) {
-//     setOpen((prevState) => ({ ...prevState, [id]: !prevState[id] }));
-//   }
-
-//   return (
-//     <Box sx={{ display: "flex" }}>
-//       <CssBaseline />
-
-//       <Drawer
-//         variant="permanent"
-//         sx={{
-//           width: drawerWidth,
-//           flexShrink: 0,
-//           [`& .MuiDrawer-paper`]: {
-//             width: drawerWidth,
-//             boxSizing: "border-box",
-//           },
-//         }}
-//       >
-//         <Toolbar />
-//         <Box sx={{ overflow: "auto" }}>
-//           <ListItemButton component="div" href="#simple-list">
-//             <ListItemText primary="Home" />
-//           </ListItemButton>
-//           <ListSubheader component="div">Data Structures</ListSubheader>
-//           {dataStructuresItems.map((postData) => {
-//             return (
-//               <div key={postData.id}>
-//                 <ListItemButton onClick={() => handleClick(postData.id)}>
-//                   <ListItemText>{postData.title}</ListItemText>
-//                   {open[postData.id] ? <ExpandLess /> : <ExpandMore />}
-//                 </ListItemButton>
-//                 <Collapse in={open[postData.id]}>
-//                   {postData.subtitles.map((subtitle, index) => {
-//                     return (
-//                       <List key={index} component="div" disablePadding>
-//                         <ListItemButton sx={{ pl: 4 }}>
-//                           <ListItemText>{subtitle}</ListItemText>
-//                         </ListItemButton>
-//                       </List>
-//                     );
-//                   })}
-//                 </Collapse>
-//               </div>
-//             );
-//           })}
-//           <Divider />
-//         </Box>
-//       </Drawer>
-//       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-//         <Toolbar />
-//         <Link to={`${props.match.url}/data-structures/arrays-and-strings`}>
-//           Example topic
-//         </Link>
-//         <Route
-//           path="/algos/data-structures/arrays-and-strings"
-//           component={ArraysAndStrings}
-//         />
-//       </Box>
-//     </Box>
-//   );
-// };
-
-// export default AlgosDrawer;

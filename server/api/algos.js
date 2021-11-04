@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Post },
+  models: { Algo, AlgoType, Category },
 } = require("../db");
 const jwt = require("jsonwebtoken");
 const secret = process.env.JWT;
@@ -24,12 +24,28 @@ const authRequired = async (req, res, next) => {
 
 router.get("/", authRequired, async (req, res, next) => {
   try {
-    const posts = await Post.findAll({
-      order: [["createdAt", "DESC"]],
+    const algos = await Algo.findAll();
+
+    if (algos.length) {
+      res.status(200).json(algos);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/algoTypes", authRequired, async (req, res, next) => {
+  try {
+    const algoTypes = await AlgoType.findAll({
+      include: [
+        {
+          model: Category,
+        },
+      ],
     });
 
-    if (posts.length) {
-      res.status(200).json(posts);
+    if (algoTypes.length) {
+      res.status(200).json(algoTypes);
     }
   } catch (err) {
     next(err);
@@ -38,14 +54,14 @@ router.get("/", authRequired, async (req, res, next) => {
 
 router.get("/:id", authRequired, async (req, res, next) => {
   try {
-    const currPost = await Post.findOne({
+    const currAlgo = await Algo.findOne({
       where: {
         id: req.params.id,
       },
     });
 
-    if (currPost.id) {
-      res.status(200).json(currPost);
+    if (currAlgo.id) {
+      res.status(200).json(currAlgo);
     }
   } catch (err) {
     next(err);
@@ -55,20 +71,19 @@ router.get("/:id", authRequired, async (req, res, next) => {
 router.post("/", authRequired, async (req, res, next) => {
   try {
     if (req.userId) {
-      let newPost = await Post.create(req.body);
+      let newAlgo = await Algo.create(req.body);
 
-      res.status(201).json(newPost);
+      res.status(201).json(newAlgo);
     }
   } catch (err) {
     next(err);
   }
 });
 
-// DELETE /api/posts/:id
 router.delete("/:id", authRequired, async (req, res, next) => {
   try {
     if (req.userId) {
-      const deleteCount = await Post.destroy({
+      const deleteCount = await Algo.destroy({
         where: { id: req.params.id },
       });
       res.status(200).json(deleteCount);
@@ -81,12 +96,12 @@ router.delete("/:id", authRequired, async (req, res, next) => {
 router.put("/:id", authRequired, async (req, res, next) => {
   try {
     if (req.userId) {
-      const updatedPost = await Post.update(req.body, {
+      const updatedAlgo = await Algo.update(req.body, {
         where: { id: req.params.id },
         returning: true,
       });
 
-      res.status(200).json(updatedPost);
+      res.status(200).json(updatedAlgo);
     }
   } catch (err) {
     next(err);
