@@ -10,7 +10,7 @@ const {
  *      match the models, and populates the database.
  */
 async function seed() {
-  await db.sync({ force: true }); // clears db and matches models to tables
+  await db.sync({ force: false }); // clears db and matches models to tables
   console.log("db synced!");
 
   // Creating Users

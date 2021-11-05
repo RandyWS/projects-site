@@ -17,7 +17,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
 
 import { useDispatch, useSelector } from "react-redux";
-import { _fetchPosts, me } from "../store";
+import { _fetchPosts, me, _fetchCurrPost } from "../store";
 
 const useStyles = makeStyles((theme) => ({
   blogsContainer: {
@@ -127,36 +127,33 @@ const useStyles = makeStyles((theme) => ({
 const BlogHome = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { allPosts } = useSelector((state) => state.posts);
+  const { allPosts, currPost } = useSelector((state) => state.posts);
   const [featPost, setFeatPost] = useState({});
   const [posts, setPosts] = useState([]);
   const { loggedIn } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    dispatch(me());
-  }, []);
 
   useEffect(() => {
     dispatch(_fetchPosts());
   }, []);
 
   useEffect(() => {
-    setFeatPost({ ...allPosts[0] });
-    setPosts([...allPosts.slice(1)]);
+    if (allPosts.length) {
+      dispatch(_fetchCurrPost(allPosts[0].id));
+      setPosts([...allPosts.slice(1)]);
+    }
   }, [allPosts]);
 
-  if (!featPost.id) {
-    return null;
-  }
+  useEffect(() => {
+    setFeatPost({ ...currPost });
+  }, [currPost]);
 
   return (
     <>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
         <Container maxWidth="lg" direction="column">
-          {loggedIn ? <Link to={`/blog/add`}>Add</Link> : null}
-
           <Card className={classes.featCard}>
+            {/* {loggedIn ? <Link to={`/blog/add`}>Add</Link> : null} */}
             <CardActionArea component={Link} to={`/blog/${featPost.id}`}>
               <CardMedia
                 className={classes.featMedia}
