@@ -48,18 +48,10 @@ export const editAlgo = (algo) => {
 export const _fetchCurrAlgo = (id) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem(TOKEN);
+      const { data } = await axios.get(`/api/algos/${id}`);
 
-      if (token) {
-        const { data } = await axios.get(`/api/algos/${id}`, {
-          headers: {
-            authorization: token,
-          },
-        });
-
-        if (data.id) {
-          dispatch(setCurrAlgo(data));
-        }
+      if (data.id) {
+        dispatch(setCurrAlgo(data));
       }
     } catch (error) {
       console.log(error);
@@ -70,18 +62,10 @@ export const _fetchCurrAlgo = (id) => {
 export const _fetchAlgos = () => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem(TOKEN);
+      const { data } = await axios.get("/api/algos");
 
-      if (token) {
-        const { data } = await axios.get("/api/algos", {
-          headers: {
-            authorization: token,
-          },
-        });
-
-        if (data.length) {
-          dispatch(setAllAlgos(data));
-        }
+      if (data.length) {
+        dispatch(setAllAlgos(data));
       }
     } catch (error) {
       console.log(error);
@@ -92,18 +76,10 @@ export const _fetchAlgos = () => {
 export const _fetchAlgoTypes = () => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem(TOKEN);
+      const { data } = await axios.get("/api/algos/algoTypes");
 
-      if (token) {
-        const { data } = await axios.get("/api/algos/algoTypes", {
-          headers: {
-            authorization: token,
-          },
-        });
-
-        if (data.length) {
-          dispatch(setAlgoTypes(data));
-        }
+      if (data.length) {
+        dispatch(setAlgoTypes(data));
       }
     } catch (error) {
       console.log(error);

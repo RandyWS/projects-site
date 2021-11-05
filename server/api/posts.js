@@ -22,7 +22,7 @@ const authRequired = async (req, res, next) => {
   next();
 };
 
-router.get("/", authRequired, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const posts = await Post.findAll({
       order: [["createdAt", "DESC"]],
@@ -36,7 +36,7 @@ router.get("/", authRequired, async (req, res, next) => {
   }
 });
 
-router.get("/:id", authRequired, async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const currPost = await Post.findOne({
       where: {

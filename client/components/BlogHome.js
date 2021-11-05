@@ -144,8 +144,8 @@ const BlogHome = (props) => {
   }, [allPosts]);
 
   useEffect(() => {
-    setFeatPost({ ...currPost });
-  }, [currPost]);
+    dispatch(me());
+  }, []);
 
   return (
     <>
@@ -154,10 +154,10 @@ const BlogHome = (props) => {
         <Container maxWidth="lg" direction="column">
           <Card className={classes.featCard}>
             {/* {loggedIn ? <Link to={`/blog/add`}>Add</Link> : null} */}
-            <CardActionArea component={Link} to={`/blog/${featPost.id}`}>
+            <CardActionArea component={Link} to={`/blog/${currPost.id}`}>
               <CardMedia
                 className={classes.featMedia}
-                image={featPost.imageUrl}
+                image={currPost.imageUrl}
                 title="feat article image"
               />
               <CardContent>
@@ -167,7 +167,7 @@ const BlogHome = (props) => {
                   className={classes.featText}
                   component="h2"
                 >
-                  {featPost.title}
+                  {currPost.title}
                 </Typography>
                 <Typography
                   variant="h4"
@@ -175,7 +175,7 @@ const BlogHome = (props) => {
                   component="p"
                   className={classes.featSubtitle}
                 >
-                  {featPost.subtitle}
+                  {currPost.subtitle}
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -188,7 +188,7 @@ const BlogHome = (props) => {
                   style={{ textAlign: "center" }}
                   className={classes.featDate}
                 >
-                  {moment(featPost.date).format("LL")}
+                  {moment(currPost.date).format("LL")}
                 </Typography>
               </Box>
             </CardActions>

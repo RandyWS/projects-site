@@ -22,7 +22,7 @@ const authRequired = async (req, res, next) => {
   next();
 };
 
-router.get("/", authRequired, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const algos = await Algo.findAll();
 
@@ -34,7 +34,7 @@ router.get("/", authRequired, async (req, res, next) => {
   }
 });
 
-router.get("/algoTypes", authRequired, async (req, res, next) => {
+router.get("/algoTypes", async (req, res, next) => {
   try {
     const algoTypes = await AlgoType.findAll({
       include: [
@@ -52,7 +52,7 @@ router.get("/algoTypes", authRequired, async (req, res, next) => {
   }
 });
 
-router.get("/:id", authRequired, async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const currAlgo = await Algo.findOne({
       where: {

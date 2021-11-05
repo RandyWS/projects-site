@@ -40,18 +40,10 @@ export const editPost = (post) => {
 export const _fetchCurrPost = (id) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem(TOKEN);
+      const { data } = await axios.get(`/api/posts/${id}`);
 
-      if (token) {
-        const { data } = await axios.get(`/api/posts/${id}`, {
-          headers: {
-            authorization: token,
-          },
-        });
-
-        if (data.id) {
-          dispatch(setCurrPost(data));
-        }
+      if (data.id) {
+        dispatch(setCurrPost(data));
       }
     } catch (error) {
       console.log(error);
@@ -62,18 +54,10 @@ export const _fetchCurrPost = (id) => {
 export const _fetchPosts = () => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem(TOKEN);
+      const { data } = await axios.get("/api/posts");
 
-      if (token) {
-        const { data } = await axios.get("/api/posts", {
-          headers: {
-            authorization: token,
-          },
-        });
-
-        if (data.length) {
-          dispatch(setAllPosts(data));
-        }
+      if (data.length) {
+        dispatch(setAllPosts(data));
       }
     } catch (error) {
       console.log(error);
