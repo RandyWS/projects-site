@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { makeStyles } from "@material-ui/core";
 import Box from "@mui/material/Box";
@@ -9,21 +9,26 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
 import { Link } from "react-router-dom";
+import { me, logout } from "../store";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
-    marginLeft: theme.spacing(10),
     display: "flex",
+    justifyContent: "space-evenly",
+    flexGrow: "3",
   },
-  logo: {
+  navcontainer: {
+    display: "flex",
     flexGrow: "1",
+  },
+
+  logo: {
     cursor: "pointer",
   },
   link: {
     textDecoration: "none",
     color: "white",
     fontSize: "20px",
-    marginLeft: theme.spacing(10),
     "&:hover": {
       color: "yellow",
       borderBottom: "1px solid white",
@@ -34,6 +39,15 @@ const useStyles = makeStyles((theme) => ({
 function Navbar() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { loggedIn } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(me());
+  }, []);
+
+  const handleClick = () => {
+    dispatch(logout());
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -43,25 +57,33 @@ function Navbar() {
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
         <Toolbar>
-          <Typography noWrap variant="h4">
-            Randy Stopa
-          </Typography>
-          <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>
-              Home
-            </Link>
-            <Link to="/projects" className={classes.link}>
-              Projects
-            </Link>
-            <Link to="/ongoing" className={classes.link}>
-              Ongoing
-            </Link>
-            <Link to="/algos" className={classes.link}>
-              Algos
-            </Link>
-            <Link to="/blog" className={classes.link}>
-              Blog
-            </Link>
+          <div className={classes.navcontainer}>
+            <Typography noWrap variant="h4">
+              Randy Stopa
+            </Typography>
+
+            <div className={classes.navlinks}>
+              <Link to="/" className={classes.link}>
+                Home
+              </Link>
+              <Link to="/projects" className={classes.link}>
+                Projects
+              </Link>
+              <Link to="/ongoing" className={classes.link}>
+                Ongoing
+              </Link>
+              <Link to="/algos" className={classes.link}>
+                Algos
+              </Link>
+              <Link to="/blog" className={classes.link}>
+                Blog
+              </Link>
+              {loggedIn ? (
+                <a href="#" onClick={handleClick} className={classes.link}>
+                  Logout
+                </a>
+              ) : null}
+            </div>
           </div>
         </Toolbar>
       </AppBar>
