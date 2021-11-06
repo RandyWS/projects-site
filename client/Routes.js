@@ -7,7 +7,6 @@ import {
   GuestRoute,
 } from "./components/ProtectedRoutes";
 import { Login, Signup } from "./components/AuthForm";
-import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Landing from "./components/Landing";
 import ProjectsHome from "./components/ProjectsHome";
