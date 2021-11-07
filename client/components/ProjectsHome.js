@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
+import { Link } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,111 +9,186 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import CardActionArea from "@material-ui/core/CardActionArea";
 import Button from "@mui/material/Button";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
+
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    fontWeight: 800,
+    paddingBottom: theme.spacing(3),
+    fontFamily: "New York Extra Large",
+    textAlign: "center",
+    color: "#fff",
+  },
+
+  hero: {
+    backgroundImage: `url("/images/portfolio3.jpeg")`,
+    height: "350px",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#fff",
+    fontSize: "4rem",
+    [theme.breakpoints.down("sm")]: {
+      height: 300,
+      fontSize: "3em",
+    },
+  },
+  projectTitle: {
+    fontWeight: 800,
+    fontFamily: "New York Extra Large",
+    textAlign: "center",
+    color: "#ffffff",
+  },
+
+  projectSubtitle: {
+    fontFamily: "SF Mono",
+    textAlign: "center",
+    color: "#ffffff",
+    fontWeight: 800,
+  },
+
+  projectCard: {
+    height: 300,
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
+    fontWeight: 800,
+    fontFamily: "Montserrat",
+    textAlign: "center",
+    color: "transparent",
+    "&:hover": {
+      filter: "grayscale(50%)",
+    },
+
+    fontSize: "4rem",
+    [theme.breakpoints.down("sm")]: {
+      height: 300,
+      fontSize: "3em",
+    },
+  },
+  project: {
+    backgroundColor: "#d3d3d3",
+    backgroundImage: "linear-gradient(315deg, #d3d3d3 0%, #7f8c8d 74%)",
+    padding: 10,
+    margin: 10,
+    backdropFilter: "blur(10px)",
+  },
+  grid: {
+    backgroundColor: "#d3d3d3",
+    backgroundImage: "linear-gradient(315deg, #d3d3d3 0%, #7f8c8d 74%)",
+  },
+}));
+
+const projects = [
+  {
+    title: "nudge",
+    url: "nudge",
+    css: "nudge",
+    imageUrl: "/images/nudge.png",
+    tagline:
+      "Nudge is an ios optimized task manager, social media app, and geolocation based store-locator.",
+    id: 1,
+  },
+  {
+    title: "Rapport",
+    url: "rapport",
+    css: "rapport",
+    imageUrl: "/images/portfolio3.jpeg",
+    tagline:
+      "Rapport is an ios optimized calendar app that helps you maintain contact with your friends.",
+    id: 2,
+  },
+  {
+    title: "Animal Conservancy",
+    css: "conservancy",
+    url: "animal-conservancy",
+    imageUrl: "/images/portfolio3.jpeg",
+    tagline:
+      "The Animal Conservancy is an ecommerce store designed to connect zoos with animals with all proceeds going to conservation efforts.",
+    id: 3,
+  },
+];
 
 const ProjectsHome = (props) => {
-  useEffect(() => {
-    const script = document.createElement("script");
+  const classes = useStyles();
+  const [show, setShow] = useState({});
 
-    script.src = "https://platform.linkedin.com/badges/js/profile.js";
-    script.async = true;
-    script.defer = true;
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  function handleMouseOver(id) {
+    setShow((prevState) => ({ ...prevState, [id]: !prevState[id] }));
+  }
 
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+    <Box className={classes.grid}>
       <Toolbar />
-      <div id="row">
-        <Typography variant="h3" component="div" gutterBottom>
-          Projects
-        </Typography>
-        <div
-          className="badge-base LI-profile-badge"
-          data-locale="en_US"
-          data-size="medium"
-          data-theme="light"
-          data-type="VERTICAL"
-          data-vanity="randy-stopa"
-          data-version="v1"
-        >
-          <a
-            className="badge-base__link LI-simple-link"
-            href="https://www.linkedin.com/in/randy-stopa?trk=profile-badge"
-          ></a>
-        </div>
-      </div>
-
-      <Card className="project-card" sx={{ display: "flex" }}>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography gutterBottom variant="h5" component="div">
-              Nudge
-            </Typography>
-
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              Nudge is an ios optimized task manager, social media app, and
-              geolocation based store-locator.
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions>
+      <Box className={classes.hero}>
+        <Box>
+          <Typography
+            gutterBottom
+            variant="h2"
+            className={classes.title}
+            component="h2"
+          >
+            PORTFOLIO
+          </Typography>
         </Box>
-      </Card>
+      </Box>
 
-      <Card className="project-card" sx={{ display: "flex" }}>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography gutterBottom variant="h5" component="div">
-              Rapport
-            </Typography>
-
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
+      <Grid container>
+        {projects.map((project) => {
+          return (
+            <Grid
+              key={project.id}
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              onMouseOver={() => handleMouseOver(project.id)}
+              onMouseOut={() => handleMouseOver(project.id)}
+              onClick={() => props.history.push(`/projects/${project.url}`)}
             >
-              Rapport is an ios optimized calendar app that helps you maintain
-              contact with your friends.
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-        </Box>
-      </Card>
-
-      <Card className="project-card" sx={{ display: "flex" }}>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography gutterBottom variant="h5" component="div">
-              The Animal Conservancy
-            </Typography>
-
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              The Animal Conservancy is an ecommerce store designed to connect
-              zoos with animals with all proceeds going to conservation efforts.
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-        </Box>
-      </Card>
+              <Box
+                className={classes.projectCard}
+                sx={{ backgroundImage: `url(${project.imageUrl})` }}
+              >
+                {show[project.id] ? (
+                  <Card className={classes.project}>
+                    <Typography
+                      gutterBottom
+                      variant="h4"
+                      component="h4"
+                      className={classes.projectTitle}
+                    >
+                      {project.title}
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      component="p"
+                      className={classes.projectSubtitle}
+                    >
+                      {project.tagline}
+                    </Typography>
+                  </Card>
+                ) : null}
+              </Box>
+            </Grid>
+          );
+        })}
+      </Grid>
     </Box>
   );
 };

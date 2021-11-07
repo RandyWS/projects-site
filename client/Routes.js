@@ -10,6 +10,9 @@ import { Login, Signup } from "./components/AuthForm";
 import NotFound from "./components/NotFound";
 import Landing from "./components/Landing";
 import ProjectsHome from "./components/ProjectsHome";
+import Nudge from "./components/projects/Nudge";
+import Rapport from "./components/projects/Rapport";
+import AnimalConservancy from "./components/projects/AnimalConservancy";
 import InProgressHome from "./components/InProgressHome";
 import AlgosNav from "./components/AlgosNav";
 import BlogHome from "./components/BlogHome";
@@ -40,6 +43,13 @@ const Routes = () => {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/projects" component={ProjectsHome} />
+        <Route exact path="/projects/nudge" component={Nudge} />
+        <Route exact path="/projects/rapport" component={Rapport} />
+        <Route
+          exact
+          path="/projects/animal-conservancy"
+          component={AnimalConservancy}
+        />
         <Route exact path="/ongoing" component={InProgressHome} />
         <Route exact path="/algos" component={AlgosNav} />
         <Route exact path="/blog" component={BlogHome} />
