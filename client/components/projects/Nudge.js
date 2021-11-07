@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import moment from "moment";
 import { Link } from "react-router-dom";
+import ReactPlayer from "react-player";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -126,6 +126,7 @@ const Nudge = (props) => {
               geolocation based store-locator.
             </Typography>
           </CardContent>
+          <ReactPlayer url="https://youtu.be/v3s8yRj5zIQ" />
           <CardMedia
             className={classes.featMedia}
             image="/images/nudge.png"

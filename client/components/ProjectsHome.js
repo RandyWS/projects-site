@@ -6,14 +6,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import Button from "@mui/material/Button";
-import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -28,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
   hero: {
     backgroundImage: `url("/images/portfolio3.jpeg")`,
-    height: "350px",
+    height: "35vh",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -58,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   projectCard: {
-    height: 300,
+    height: "40vh",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -91,6 +84,46 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     backgroundColor: "#d3d3d3",
     backgroundImage: "linear-gradient(315deg, #d3d3d3 0%, #7f8c8d 74%)",
+  },
+
+  bottom: {
+    backgroundColor: "black",
+    height: "25vh",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#fff",
+    fontSize: "4rem",
+    [theme.breakpoints.down("sm")]: {
+      height: 300,
+      fontSize: "3em",
+    },
+  },
+  bottomText: {
+    fontFamily: "New York Extra Large",
+    textAlign: "center",
+    fontWeight: 800,
+    color: "#fff",
+  },
+  bottomSubtitle: {
+    fontFamily: "New York Small",
+    textAlign: "center",
+    color: "#fff",
+  },
+  navlinks: {
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  link: {
+    color: "white",
+    fontSize: "20px",
+    padding: 10,
   },
 }));
 
@@ -189,6 +222,30 @@ const ProjectsHome = (props) => {
           );
         })}
       </Grid>
+      <Box className={classes.bottom}>
+        <Box>
+          <Typography
+            gutterBottom
+            variant="h4"
+            className={classes.bottomText}
+            component="h4"
+          >
+            Randy Stopa
+          </Typography>
+
+          <div className={classes.navlinks} sx={{ p: 1 }}>
+            <Link to="https://github.com/RandyWS" className={classes.link}>
+              GitHub
+            </Link>
+            <Link
+              to="https://www.linkedin.com/in/randy-stopa"
+              className={classes.link}
+            >
+              LinkedIn
+            </Link>
+          </div>
+        </Box>
+      </Box>
     </Box>
   );
 };
