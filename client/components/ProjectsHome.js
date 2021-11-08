@@ -13,15 +13,14 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   title: {
     fontWeight: 800,
-    paddingBottom: theme.spacing(3),
-    fontFamily: "New York Extra Large",
+    fontFamily: "SF Mono",
     textAlign: "center",
     color: "#fff",
   },
 
   hero: {
     backgroundImage: `url("/images/portfolio3.jpeg")`,
-    height: "35vh",
+    height: "40vh",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -30,11 +29,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     color: "#fff",
-    fontSize: "4rem",
-    [theme.breakpoints.down("sm")]: {
-      height: 300,
-      fontSize: "3em",
-    },
   },
   projectTitle: {
     fontWeight: 800,
@@ -103,17 +97,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "3em",
     },
   },
-  bottomText: {
-    fontFamily: "New York Extra Large",
-    textAlign: "center",
-    fontWeight: 800,
-    color: "#fff",
-  },
-  bottomSubtitle: {
-    fontFamily: "New York Small",
-    textAlign: "center",
-    color: "#fff",
-  },
+
   navlinks: {
     textAlign: "center",
     justifyContent: "center",
@@ -121,9 +105,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   link: {
+    fontFamily: "SF Mono",
     color: "white",
-    fontSize: "20px",
-    padding: 10,
+    fontSize: "large",
+    paddingLeft: 10,
+    paddingRight: 10,
+    fontWeight: 800,
   },
 }));
 
@@ -141,7 +128,7 @@ const projects = [
     title: "Rapport",
     url: "rapport",
     css: "rapport",
-    imageUrl: "/images/portfolio3.jpeg",
+    imageUrl: "/images/rapport.png",
     tagline:
       "Rapport is an ios optimized calendar app that helps you maintain contact with your friends.",
     id: 2,
@@ -150,7 +137,7 @@ const projects = [
     title: "Animal Conservancy",
     css: "conservancy",
     url: "animal-conservancy",
-    imageUrl: "/images/portfolio3.jpeg",
+    imageUrl: "/images/animal-conservancy.png",
     tagline:
       "The Animal Conservancy is an ecommerce store designed to connect zoos with animals with all proceeds going to conservation efforts.",
     id: 3,
@@ -174,10 +161,26 @@ const ProjectsHome = (props) => {
             gutterBottom
             variant="h2"
             className={classes.title}
-            component="h2"
+            component="h1"
           >
             PORTFOLIO
           </Typography>
+          <div className={classes.navlinks} sx={{ p: 1 }}>
+            <Link
+              to={{ pathname: "https://github.com/RandyWS" }}
+              target="_blank"
+              className={classes.link}
+            >
+              GitHub
+            </Link>
+            <Link
+              to={{ pathname: "https://www.linkedin.com/in/randy-stopa" }}
+              target="_blank"
+              className={classes.link}
+            >
+              LinkedIn
+            </Link>
+          </div>
         </Box>
       </Box>
 
@@ -222,30 +225,7 @@ const ProjectsHome = (props) => {
           );
         })}
       </Grid>
-      <Box className={classes.bottom}>
-        <Box>
-          <Typography
-            gutterBottom
-            variant="h4"
-            className={classes.bottomText}
-            component="h4"
-          >
-            Randy Stopa
-          </Typography>
-
-          <div className={classes.navlinks} sx={{ p: 1 }}>
-            <Link to="https://github.com/RandyWS" className={classes.link}>
-              GitHub
-            </Link>
-            <Link
-              to="https://www.linkedin.com/in/randy-stopa"
-              className={classes.link}
-            >
-              LinkedIn
-            </Link>
-          </div>
-        </Box>
-      </Box>
+      <Box className={classes.bottom}></Box>
     </Box>
   );
 };

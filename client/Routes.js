@@ -50,8 +50,8 @@ const Routes = () => {
           path="/projects/animal-conservancy"
           component={AnimalConservancy}
         />
-        <Route exact path="/ongoing" component={InProgressHome} />
-        <Route exact path="/algos" component={AlgosNav} />
+        {/* <Route exact path="/ongoing" component={InProgressHome} /> */}
+        {/* <Route exact path="/algos" component={AlgosNav} /> */}
         <Route exact path="/blog" component={BlogHome} />
         <LoggedInRoute
           isLoggedIn={loggedIn}

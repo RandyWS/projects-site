@@ -69,12 +69,12 @@ function Navbar() {
               <Link to="/projects" className={classes.link}>
                 Projects
               </Link>
-              <Link to="/ongoing" className={classes.link}>
+              {/* <Link to="/ongoing" className={classes.link}>
                 Ongoing
-              </Link>
-              <Link to="/algos" className={classes.link}>
+              </Link> */}
+              {/* <Link to="/algos" className={classes.link}>
                 Algos
-              </Link>
+              </Link> */}
               <Link to="/blog" className={classes.link}>
                 Blog
               </Link>

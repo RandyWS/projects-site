@@ -27,8 +27,14 @@ export const Home = (props) => {
               alignContent: "space-between",
             }}
           >
-            <Box pt={1}>
-              <Typography component="div" variant="body1">
+            <Box pt={1} m={1}>
+              <Typography
+                component="div"
+                variant="body1"
+                sx={{
+                  fontSize: "1.6rem",
+                }}
+              >
                 Hello I'm Randy Stopa, a software engineer currently based in
                 Boston. I originally studied politics and law at Oberlin
                 College, and used this knowledge to pursue a career as a patent
@@ -37,8 +43,14 @@ export const Home = (props) => {
                 participate creatively in this space.
               </Typography>
             </Box>
-            <Box pt={1}>
-              <Typography component="div" variant="body1">
+            <Box pt={1} m={1}>
+              <Typography
+                component="div"
+                variant="body1"
+                sx={{
+                  fontSize: "1.6rem",
+                }}
+              >
                 When I started taking free JS courses over the pandemic, I knew
                 I had found what I was looking for. I love the creative problem
                 solving aspect of coding. After a 17-week immersive coding
@@ -48,8 +60,14 @@ export const Home = (props) => {
                 prepared me to be an empathetic, organized, and driven engineer.
               </Typography>
             </Box>
-            <Box pt={1}>
-              <Typography component="div" variant="body1">
+            <Box pt={1} m={1}>
+              <Typography
+                component="div"
+                variant="body1"
+                sx={{
+                  fontSize: "1.6rem",
+                }}
+              >
                 This site serves as my space to keep track of my completed
                 projects, practice algorithms, and keep notes on my current
                 projects.

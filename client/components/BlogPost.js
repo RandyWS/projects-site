@@ -258,11 +258,16 @@ const BlogPost = (props) => {
             for this blog.
           </Typography>
           <div className={classes.navlinks} sx={{ p: 3 }}>
-            <Link to="https://github.com/RandyWS" className={classes.link}>
+            <Link
+              to={{ pathname: "https://github.com/RandyWS" }}
+              target="_blank"
+              className={classes.link}
+            >
               GitHub
             </Link>
             <Link
-              to="https://www.linkedin.com/in/randy-stopa"
+              to={{ pathname: "https://www.linkedin.com/in/randy-stopa" }}
+              target="_blank"
               className={classes.link}
             >
               LinkedIn
