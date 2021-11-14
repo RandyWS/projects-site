@@ -145,7 +145,13 @@ const BachBlock = (props) => {
           >
             GitHub
           </Link>
-          <Link to="blog/5" className={classes.link}>
+          <Link
+            to={{
+              pathname: "/blog/5",
+            }}
+            replace
+            className={classes.link}
+          >
             Blog Post
           </Link>
         </div>
