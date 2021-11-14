@@ -13,6 +13,7 @@ import ProjectsHome from "./components/ProjectsHome";
 import Nudge from "./components/projects/Nudge";
 import Rapport from "./components/projects/Rapport";
 import AnimalConservancy from "./components/projects/AnimalConservancy";
+import BachBlock from "./components/projects/BachBlock";
 import InProgressHome from "./components/InProgressHome";
 import AlgosNav from "./components/AlgosNav";
 import BlogHome from "./components/BlogHome";
@@ -50,6 +51,7 @@ const Routes = () => {
           path="/projects/animal-conservancy"
           component={AnimalConservancy}
         />
+        <Route exact path="/projects/bach-block" component={BachBlock} />
         {/* <Route exact path="/ongoing" component={InProgressHome} /> */}
         {/* <Route exact path="/algos" component={AlgosNav} /> */}
         <Route exact path="/blog" component={BlogHome} />

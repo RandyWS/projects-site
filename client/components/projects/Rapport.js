@@ -341,6 +341,26 @@ const Rapport = (props) => {
                   </CardContent>
                 </Card>
               </Grid>
+
+              <Grid item xs={3} sm={2} md={2}>
+                <Card className={classes.card}>
+                  <Box
+                    pt={1}
+                    sx={{ backgroundImage: `url("/images/css.png")` }}
+                    className={classes.logo}
+                  ></Box>
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      className={classes.text}
+                      component="h2"
+                    >
+                      CSS
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
             </Grid>
           </CardContent>
         </Card>

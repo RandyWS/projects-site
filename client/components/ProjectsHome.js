@@ -142,6 +142,15 @@ const projects = [
       "The Animal Conservancy is an ecommerce store designed to connect zoos with animals with all proceeds going to conservation efforts.",
     id: 3,
   },
+  {
+    title: "Bach-Block",
+    css: "bach-block",
+    url: "bach-block",
+    imageUrl: "/images/rose1.png",
+    tagline:
+      "Bach-Block is a Bachelor Franchise spoiler block Chrome extension written using JQuery.",
+    id: 4,
+  },
 ];
 
 const ProjectsHome = (props) => {
