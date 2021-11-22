@@ -203,7 +203,7 @@ const ProjectsHome = (props) => {
               sm={6}
               md={4}
               onMouseOver={() => handleMouseOver(project.id)}
-              onMouseOut={() => handleMouseOver(project.id)}
+              // onMouseOut={() => handleMouseOver(project.id)}
               onClick={() => props.history.push(`/projects/${project.url}`)}
             >
               <Box
@@ -211,7 +211,10 @@ const ProjectsHome = (props) => {
                 sx={{ backgroundImage: `url(${project.imageUrl})` }}
               >
                 {show[project.id] ? (
-                  <Card className={classes.project}>
+                  <Card
+                    className={classes.project}
+                    onMouseOver={() => handleMouseOver(project.id)}
+                  >
                     <Typography
                       gutterBottom
                       variant="h4"

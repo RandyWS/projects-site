@@ -68,8 +68,7 @@ export const Home = (props) => {
                   fontSize: "1.6rem",
                 }}
               >
-                This site serves as my space to keep track of my completed
-                projects, practice algorithms, and keep notes on my current
+                This site serves as a portfolio and a tech blog for my current
                 projects.
               </Typography>
             </Box>
