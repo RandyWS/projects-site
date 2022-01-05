@@ -149,10 +149,7 @@ const BlogHome = (props) => {
 
   return (
     <>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, p: 3, backgroundColor: "#f7ede2" }}
-      >
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
         <Container maxWidth="lg" direction="column">
           <Card className={classes.featCard}>
