@@ -11,7 +11,10 @@ import Grid from "@material-ui/core/Grid";
 
 export const Home = (props) => {
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+    <Box
+      component="main"
+      sx={{ flexGrow: 1, p: 3, backgroundColor: "#f7ede2", height: "100vh" }}
+    >
       <Toolbar />
       <Typography variant="h3" component="div" gutterBottom>
         Meet Randy

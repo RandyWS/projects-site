@@ -12,6 +12,9 @@ import { Link } from "react-router-dom";
 import { me, logout } from "../store";
 
 const useStyles = makeStyles((theme) => ({
+  bar: {
+    background: "#84a59d",
+  },
   navlinks: {
     display: "flex",
     justifyContent: "space-evenly",
@@ -56,7 +59,7 @@ function Navbar() {
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
-        <Toolbar>
+        <Toolbar className={classes.bar}>
           <div className={classes.navcontainer}>
             <Typography noWrap variant="h4">
               Randy Stopa

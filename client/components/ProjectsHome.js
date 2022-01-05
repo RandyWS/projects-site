@@ -76,12 +76,11 @@ const useStyles = makeStyles((theme) => ({
     backdropFilter: "blur(10px)",
   },
   grid: {
-    backgroundColor: "#d3d3d3",
-    backgroundImage: "linear-gradient(315deg, #d3d3d3 0%, #7f8c8d 74%)",
+    backgroundColor: "#f7ede2",
   },
 
   bottom: {
-    backgroundColor: "black",
+    backgroundColor: "#f6bd60",
     height: "25vh",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",

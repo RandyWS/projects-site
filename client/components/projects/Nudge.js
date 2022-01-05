@@ -92,7 +92,7 @@ const Nudge = (props) => {
   const classes = useStyles();
 
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+    <Box component="main" sx={{ flexGrow: 1, p: 3,  }}>
       <Toolbar />
       <Container maxWidth="lg" direction="column">
         <Card className={classes.featCard}>

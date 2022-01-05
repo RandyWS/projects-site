@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   hero: {
-    backgroundColor: "black",
+    backgroundColor: "#f6bd60",
     height: "500px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -149,7 +149,10 @@ const BlogHome = (props) => {
 
   return (
     <>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3, backgroundColor: "#f7ede2" }}
+      >
         <Toolbar />
         <Container maxWidth="lg" direction="column">
           <Card className={classes.featCard}>
