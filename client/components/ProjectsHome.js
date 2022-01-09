@@ -115,13 +115,22 @@ const useStyles = makeStyles((theme) => ({
 
 const projects = [
   {
-    title: "nudge",
+    title: "Nudge",
     url: "nudge",
     css: "nudge",
     imageUrl: "/images/nudge.png",
     tagline:
       "Nudge is an ios optimized task manager, social media app, and geolocation based store-locator.",
     id: 1,
+  },
+  {
+    title: "Portfolio",
+    url: "portfolio",
+    css: "portfolio",
+    imageUrl: "/images/portfolio.png",
+    tagline:
+      "Website built to showcase completed projects as well as write about the technical aspects of ongoing projects using Draft.js.",
+    id: 5,
   },
   {
     title: "Rapport",

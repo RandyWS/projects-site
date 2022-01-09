@@ -12,6 +12,7 @@ import Landing from "./components/Landing";
 import ProjectsHome from "./components/ProjectsHome";
 import Nudge from "./components/projects/Nudge";
 import Rapport from "./components/projects/Rapport";
+import Portfolio from "./components/projects/Portfolio";
 import AnimalConservancy from "./components/projects/AnimalConservancy";
 import BachBlock from "./components/projects/BachBlock";
 import InProgressHome from "./components/InProgressHome";
@@ -45,6 +46,7 @@ const Routes = () => {
         <Route exact path="/" component={Landing} />
         <Route exact path="/projects" component={ProjectsHome} />
         <Route exact path="/projects/nudge" component={Nudge} />
+        <Route exact path="/projects/portfolio" component={Portfolio} />
         <Route exact path="/projects/rapport" component={Rapport} />
         <Route
           exact

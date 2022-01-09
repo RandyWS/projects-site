@@ -92,7 +92,7 @@ const Nudge = (props) => {
   const classes = useStyles();
 
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3,  }}>
+    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <Toolbar />
       <Container maxWidth="lg" direction="column">
         <Card className={classes.featCard}>
@@ -316,6 +316,25 @@ const Nudge = (props) => {
                   </CardContent>
                 </Card>
               </Grid>
+              <Grid item xs={3} sm={2} md={2}>
+                <Card className={classes.card}>
+                  <Box
+                    pt={1}
+                    sx={{ backgroundImage: `url("/images/figma.png")` }}
+                    className={classes.logo}
+                  ></Box>
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      className={classes.text}
+                      component="h2"
+                    >
+                      Figma
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
 
               <Grid item xs={3} sm={2} md={2}>
                 <Card className={classes.card}>
@@ -332,6 +351,25 @@ const Nudge = (props) => {
                       component="h2"
                     >
                       CSS
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={3} sm={2} md={2}>
+                <Card className={classes.card}>
+                  <Box
+                    pt={1}
+                    sx={{ backgroundImage: `url("/images/html.png")` }}
+                    className={classes.logo}
+                  ></Box>
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      className={classes.text}
+                      component="h2"
+                    >
+                      HTML5
                     </Typography>
                   </CardContent>
                 </Card>

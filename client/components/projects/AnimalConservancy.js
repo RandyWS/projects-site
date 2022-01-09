@@ -92,7 +92,7 @@ const AnimalConservancy = (props) => {
   const classes = useStyles();
 
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3,  }}>
+    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <Toolbar />
       <Container maxWidth="lg" direction="column">
         <Card className={classes.featCard}>
@@ -211,7 +211,7 @@ const AnimalConservancy = (props) => {
                       className={classes.text}
                       component="h2"
                     >
-                      Javascript
+                      JavaScript
                     </Typography>
                   </CardContent>
                 </Card>
@@ -306,7 +306,7 @@ const AnimalConservancy = (props) => {
                       className={classes.text}
                       component="h2"
                     >
-                      Nodejs
+                      Node.js
                     </Typography>
                   </CardContent>
                 </Card>

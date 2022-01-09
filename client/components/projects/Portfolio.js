@@ -87,8 +87,8 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
   },
 }));
-// https://youtu.be/XxzhEh_DC2k
-const Rapport = (props) => {
+
+const Portfolio = (props) => {
   const classes = useStyles();
 
   return (
@@ -103,7 +103,7 @@ const Rapport = (props) => {
               className={classes.featText}
               component="h3"
             >
-              Rapport
+              Portfolio and Tech Blog
             </Typography>
 
             <Typography
@@ -112,9 +112,8 @@ const Rapport = (props) => {
               component="p"
               className={classes.featSubtitle}
             >
-              Rapport is an iOS optimized mobile app that helps maintain
-              friendships by programmatically scheduling when the user should
-              contact their friends.
+              Website built to showcase completed projects as well as write
+              about the technical aspects of ongoing projects.
             </Typography>
             <Box sx={{ fontStyle: "italic" }}>
               <Typography
@@ -123,7 +122,7 @@ const Rapport = (props) => {
                 component="p"
                 className={classes.featSubtitle}
               >
-                September 29th, 2021 - October 4th, 2021
+                November 1st, 2021 - Present
               </Typography>
             </Box>
           </CardContent>
@@ -134,12 +133,13 @@ const Rapport = (props) => {
             fontSize="large"
             onClick={(e) => {
               e.preventDefault();
-              window.location.href =
-                "https://github.com/RandyWS/rapport_native";
+              window.location.href = "https://github.com/RandyWS/projects-site";
             }}
           />
           <Link
-            to={{ pathname: "https://github.com/RandyWS/rapport_native" }}
+            to={{
+              pathname: "https://github.com/RandyWS/projects-site",
+            }}
             target="_blank"
             className={classes.link}
           >
@@ -164,34 +164,11 @@ const Rapport = (props) => {
               className={classes.description}
               component="h5"
             >
-              Rapport is an iOS mobile application that helps users maintain
-              friendships by programmatically scheduling contact times and
-              keeping track of contact frequency for their friends on a
-              calendar. Users can add friends, input how frequently they would
-              like to contact their friends, and the app will generate dates and
-              times for when the user should contact their friend to maintain
-              rapport. The calendar interface displays their friend's picture so
-              the user can quickly identify who they should contact on a given
-              day. The user is able to input previous contacts with their
-              friends and the type of communication as well. Built over 5 days
-              for a hackathon.
+              This portfolio and tech blog was built using React, Draft.js,
+              Figma, Material UI, PostgreSQL, Sequelize ORM, Node.js, Express,
+              and Redux to showcase completed projects as well as write about
+              the technical aspects of ongoing projects.
             </Typography>
-          </CardContent>
-        </Card>
-        <Divider />
-        <Card className={classes.demoCard}>
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              className={classes.demoText}
-              component="h5"
-            >
-              Demo:
-            </Typography>
-            <Box pt={1} className={classes.playerContainer}>
-              <ReactPlayer url="https://youtu.be/XxzhEh_DC2k" />
-            </Box>
           </CardContent>
         </Card>
         <Divider />
@@ -211,6 +188,63 @@ const Rapport = (props) => {
                 <Card className={classes.card}>
                   <Box
                     pt={1}
+                    sx={{ backgroundImage: `url("/images/draft-js.jpeg")` }}
+                    className={classes.logo}
+                  ></Box>
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      className={classes.text}
+                      component="h2"
+                    >
+                      Draft.js
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={3} sm={2} md={2}>
+                <Card className={classes.card}>
+                  <Box
+                    pt={1}
+                    sx={{ backgroundImage: `url("/images/mui.png")` }}
+                    className={classes.logo}
+                  ></Box>
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      className={classes.text}
+                      component="h2"
+                    >
+                      Material UI
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={3} sm={2} md={2}>
+                <Card className={classes.card}>
+                  <Box
+                    pt={1}
+                    sx={{ backgroundImage: `url("/images/figma.png")` }}
+                    className={classes.logo}
+                  ></Box>
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      className={classes.text}
+                      component="h2"
+                    >
+                      Figma
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={3} sm={2} md={2}>
+                <Card className={classes.card}>
+                  <Box
+                    pt={1}
                     sx={{ backgroundImage: `url("/images/javascript.png")` }}
                     className={classes.logo}
                   ></Box>
@@ -221,7 +255,7 @@ const Rapport = (props) => {
                       className={classes.text}
                       component="h2"
                     >
-                      Javascript
+                      JavaScript
                     </Typography>
                   </CardContent>
                 </Card>
@@ -230,7 +264,7 @@ const Rapport = (props) => {
                 <Card className={classes.card}>
                   <Box
                     pt={1}
-                    sx={{ backgroundImage: `url("/images/react-native.png")` }}
+                    sx={{ backgroundImage: `url("/images/react.png")` }}
                     className={classes.logo}
                   ></Box>
                   <CardContent>
@@ -240,7 +274,26 @@ const Rapport = (props) => {
                       className={classes.text}
                       component="h2"
                     >
-                      React Native
+                      React
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={3} sm={2} md={2}>
+                <Card className={classes.card}>
+                  <Box
+                    pt={1}
+                    sx={{ backgroundImage: `url("/images/redux.png")` }}
+                    className={classes.logo}
+                  ></Box>
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      className={classes.text}
+                      component="h2"
+                    >
+                      Redux
                     </Typography>
                   </CardContent>
                 </Card>
@@ -302,45 +355,6 @@ const Rapport = (props) => {
                   </CardContent>
                 </Card>
               </Grid>
-
-              <Grid item xs={3} sm={2} md={2}>
-                <Card className={classes.card}>
-                  <Box
-                    pt={1}
-                    sx={{ backgroundImage: `url("/images/redux.png")` }}
-                    className={classes.logo}
-                  ></Box>
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      className={classes.text}
-                      component="h2"
-                    >
-                      Redux
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={3} sm={2} md={2}>
-                <Card className={classes.card}>
-                  <Box
-                    pt={1}
-                    sx={{ backgroundImage: `url("/images/xcode.png")` }}
-                    className={classes.logo}
-                  ></Box>
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      className={classes.text}
-                      component="h2"
-                    >
-                      XCode
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
               <Grid item xs={3} sm={2} md={2}>
                 <Card className={classes.card}>
                   <Box
@@ -387,4 +401,4 @@ const Rapport = (props) => {
   );
 };
 
-export default Rapport;
+export default Portfolio;
