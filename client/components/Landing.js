@@ -162,14 +162,6 @@ export const Home = (props) => {
       </Box>
       <Box className={classes.hero}>
         <Box>
-          <Typography
-            variant="h5"
-            color="textSecondary"
-            component="p"
-            className={classes.bottomSubtitle}
-          >
-            miranda.stopa@gmail.com
-          </Typography>
           <div className={classes.navlinks} sx={{ p: 3 }}>
             <Link
               to={{ pathname: "https://github.com/RandyWS" }}
@@ -186,6 +178,9 @@ export const Home = (props) => {
               LinkedIn
             </Link>
           </div>
+          <Typography variant="h5" component="p" className={classes.link}>
+            miranda.stopa@gmail.com
+          </Typography>
         </Box>
       </Box>
     </>
